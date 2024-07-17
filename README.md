@@ -28,7 +28,7 @@ Develop a system to allow citizens to report bugs on government websites, create
     cd your-repository-name
     ```
 
-2.  Install dependencies:
+2. Install dependencies:
     ```bash
     npm install mysql body-parser path express express-session multer ejs http
     ```
@@ -44,100 +44,111 @@ Develop a system to allow citizens to report bugs on government websites, create
     - `http`: Core module for creating HTTP servers and clients.
 
 3. Set up the database:
-    create tables:
-   ## Bugs Table
-   table:bugs
-      -Description: Stores information about reported bugs
-```
-    CREATE TABLE `bugs` (
-  `email` text NOT NULL,
-  `title` text NOT NULL,
-  `category` text NOT NULL,
-  `ministry` text NOT NULL,
-  `descr` longtext NOT NULL,
-  `webname` text NOT NULL,
-  `weblink` longtext NOT NULL,
-  `img` blob NOT NULL,
-  `img2` blob NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` text NOT NULL DEFAULT 'pending'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-```
-``
-    ## Users Table
-    -sql
-    -Table: users
-    -Description: Stores information about registered users
-```
-``
-   CREATE TABLE `user` (
-  `username` text NOT NULL,
-  `email` text NOT NULL,
-  `mobile` int(11) NOT NULL,
-  `password` text NOT NULL,
-  `credit` int(11) NOT NULL DEFAULT 0,
-  `autho` text NOT NULL DEFAULT 'false'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    ### Bugs Table
+    - Table: `bugs`
+    - Description: Stores information about reported bugs
+    ```sql
+    CREATE TABLE `bugs` (
+      `email` text NOT NULL,
+      `title` text NOT NULL,
+      `category` text NOT NULL,
+      `ministry` text NOT NULL,
+      `descr` longtext NOT NULL,
+      `webname` text NOT NULL,
+      `weblink` longtext NOT NULL,
+      `img` blob NOT NULL,
+      `img2` blob NOT NULL,
+      `date` timestamp NOT NULL DEFAULT current_timestamp(),
+      `status` text NOT NULL DEFAULT 'pending'
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
     ```
-```
-`
+
+    ### Users Table
+    - Table: `user`
+    - Description: Stores information about registered users
+    ```sql
+    CREATE TABLE `user` (
+      `username` text NOT NULL,
+      `email` text NOT NULL,
+      `mobile` int(11) NOT NULL,
+      `password` text NOT NULL,
+      `credit` int(11) NOT NULL DEFAULT 0,
+      `autho` text NOT NULL DEFAULT 'false'
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    ```
+
     ### Comments Table
-    -sql
-    -Table: comments
-    -Description: Stores comments on bug reports
-```
+    - Table: `comm2`
+    - Description: Stores comments on bug reports
+    ```sql
     CREATE TABLE `comm2` (
-  `title` text NOT NULL,
-  `username` text NOT NULL,
-  `comm` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+      `title` text NOT NULL,
+      `username` text NOT NULL,
+      `comm` longtext NOT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
     ```
-```
-``
-    ## Authority table
-    -sql
-    -Table: departments
-    -Description: Stores information about government departments
-```
-   CREATE TABLE `authority` (
-  `id` int(11) NOT NULL,
-  `username` text NOT NULL,
-  `email` text NOT NULL,
-  `mobile` int(11) NOT NULL,
-  `password` text NOT NULL,
-  `department` text NOT NULL,
-  `autho` text NOT NULL DEFAULT 'true'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+    ### Departments Table
+    - Table: `departments`
+    - Description: Stores information about government departments
+    ```sql
+    CREATE TABLE `departments` (
+      `id` int(11) NOT NULL,
+      `name` varchar(100) NOT NULL COMMENT 'Name of the department',
+      `description` text COMMENT 'Description of the department',
+      PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Table to store government departments';
     ```
-```
-``
-    - Update the database configuration in the project. Edit the `app.js` (or equivalent configuration file) and set your database host, name, user, and password:
-    javascript
+
+    ### Authority Table
+    - Table: `authority`
+    - Description: Stores information about authorities
+    ```sql
+    CREATE TABLE `authority` (
+      `id` int(11) NOT NULL,
+      `username` text NOT NULL,
+      `email` text NOT NULL,
+      `mobile` int(11) NOT NULL,
+      `password` text NOT NULL,
+      `department` text NOT NULL,
+      `autho` text NOT NULL DEFAULT 'true'
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    ```
+
+4. Update the database configuration in the project. Edit the `app.js` (or equivalent configuration file) and set your database host, name, user, and password:
+    ```javascript
     // app.js
-    ```
     var con = mysql.createConnection({
-    host: "your server",
-    user: "your-username",
-    password: " yourpassword",
-    database: "database",
+        host: "your-server",
+        user: "your-username",
+        password: "your-password",
+        database: "your-database",
     });
     ```
 
+5. Start the application:
+    ```bash
+    npm start
     ```
-
 
 ## Usage
 - Access the application at `http://localhost:3000`.
 - Register as a user to report bugs.
 - View bugs reported by department and comment on them.
 - Authorities can log in to access the monitoring dashboard.
-  
-## Authors
--This project is jointly developed by
--[Subham](https://github.com/Subham1) 
--[Bhagya](https://github.com/BHAGYAMUNI).
--[Sahiti](https://github.com/friend-username).
--Both contributors have equal ownership and contributions to the project.
+
+# Project Contributors
+
+We developed this project together:
+
+| Contributor | Profile |
+|-------------|---------|
+|**Subham** |https://github.com/Subham1 |
+| **Bhagya** | https://github.com/BHAGYAMUNI |
+|  **Sahiti** | () |
+
+Feel free to check out our profiles and follow our work!
 
 
+All contributors have equal ownership and contributions to the project.
