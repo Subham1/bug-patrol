@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-tI2ah1WfCBvtp9lYXEh8R0cbpXw2IapU0G9PvJrBE8F6EM0GJRDx8/48M8T49hSfC2QyTzUMqo47RR+QaVU7vg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://i.pinimg.com/564x/ad/fe/c6/adfec60620426c53f8b05e0e6ba4bebe.jpg");
+            background-size: cover;
+            background-attachment: fixed; /* Ensures the background image is fixed */
+            color: whitesmoke; /* Ensures text is readable */
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .navbar a {
+            color: black;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a:hover {
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+
+        .navbar .left {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .left a {
+            margin-right: 10px;
+        }
+
+        .navbar .right {
+            margin-right: 20px; /* Adjust margin for space between notification and profile */
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Align items to the right */
+            position: relative; /* Ensure relative positioning for dropdown */
+        }
+
+        .navbar .icon {
+            margin-right: 8px;
+        }
+
+        .profile img {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            margin-right: 40px;
+        }
+
+        .container {
+            padding: 20px;
+            margin-top: 80px; /* Adjust to prevent content from being hidden under navbar */
+            display: flex;
+            justify-content: center; /* Align items to the center */
+            text-align: left;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .about-us-content {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-us-content h1,
+        .about-us-content h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .about-us-content p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .about-us-content ul {
+            list-style: disc;
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .about-us-content ul li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="left">
+            <a class="navbar-brand" href="#">
+                <img src="image/BugPatrol.png"   alt="Bootstrap" width="110" height="37">
+              </a>
+            <a href="/home">
+                <span class="icon">&#127968;</span>Home
+            </a>
+            <a href="/report">
+                <span class="icon">&#128736;</span>Report a Bug
+            </a>
+            <a href="/commmunity">
+                <span class="icon">&#128101;</span>Community Forum
+            </a>
+            <% 
+            var moni = typeof moni !== 'undefined' ? moni : false; 
+          %>
+          <% if(moni){ %>
+            <a href="/dash">
+              <span class="icon">&#128200;</span>Monitoring Dashboard
+            </a>
+          <% } %>
+          
+            <a href="/about">
+                <span class="icon">&#128100;</span>About Us
+            </a>
+        </div>
+       
+
+        <% 
+
+        var logged = typeof logged !== 'undefined' ? logged : false; 
+      %>
+        
+        <% if(logged){%>
+      
+            <form class="d-flex" role="search">
+            
+              <div class="text-bold" style="padding-left: 10px;padding-right: 10px;">
+             <p style=" white-space: pre-wrap;">Welcome  <%=name%></p>
+            </div>
+            <div class="profile">
+                <a href="/profile">
+                    <img src="image/girl2.png" alt="Profile">
+                </a>
+            </div>            
+        </div>
+            </form>
+        
+            <%}else {%> 
+
+        <div class="right">
+            <a href="/login">
+                <span class="icon">&#128100;</span>User login
+            </a>
+            <a href="/alogin">
+                <span class="icon">&#128274;</span>authority Login
+            </a>
+        </div>
+            
+        <%}
+
+      %>
+    
+    </div>
+    <div class="container">
+        <div class="about-us-content">
+            <h1>About Us</h1>
+            <p>Welcome to our Bug Reporting and Monitoring Platform, where we leverage the power of community and technology to enhance the efficiency, security, and usability of government websites. Our mission is to create a collaborative environment where citizens and authorities can work together to ensure the highest standards of digital governance.</p>
+
+            <h2>Our Mission</h2>
+            <p>Our platform is dedicated to empowering citizens to take an active role in the improvement of government websites by reporting bugs and issues. We believe in the importance of transparency, accountability, and community engagement in the digital age. By providing a user-friendly interface and powerful tools, we aim to facilitate effective communication between citizens and government agencies, ensuring a seamless and secure online experience for all.</p>
+
+            <h2>What We Offer</h2>
+            <ul>
+                <li>User-Friendly Bug Reporting: Our intuitive interface allows users to easily report bugs and issues on government websites. Users can categorize bugs, attach screenshots or videos, and provide detailed descriptions to help expedite the resolution process.</li>
+                <li>Community Engagement: We foster a collaborative environment where users can discuss issues, share solutions, and provide feedback. Our community forum encourages active participation and knowledge sharing among citizens and developers.</li>
+                <li>Real-Time Monitoring: Our monitoring dashboard provides real-time insights into the status of reported bugs, allowing authorities to prioritize and address critical issues efficiently. Historical data and trend analysis help in identifying recurring issues and improving overall system performance.</li>
+                <li>Reward System: To motivate and recognize the contributions of our users, we have implemented a reward system. Users can earn points for reporting and resolving bugs, with top contributors showcased on our leaderboard and awarded badges for their efforts.</li>
+                <li>Security and Privacy: We prioritize the security and privacy of our users. Our platform is built with robust security measures to protect user data and ensure a safe environment for reporting and monitoring activities.</li>
+            </ul>
+
+            <h2>Our Vision</h2>
+            <p>We envision a future where government websites are not only functional but also secure, user-friendly, and responsive to the needs of the public. By harnessing the collective power of our community, we strive to create a more transparent and accountable digital ecosystem that benefits everyone.</p>
+
+            <h2>Join Us</h2>
+            <p>Be a part of our mission to improve digital governance. Whether you're a citizen passionate about making a difference, a developer eager to solve complex problems, or a government official dedicated to enhancing public services, we welcome you to join our platform. Together, we can drive positive change and ensure a better online experience for all.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body, html {
+            height: 90%;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .left-section, .right-section {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .right-section {
+            background-color: #6c63ff;
+            color: white;
+        }
+
+        form {
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form h2 {
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            display: flex;
+            width: 400px;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            background-color: #F0EDFF;
+        }
+
+        .input-group label {
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group .icon {
+            padding: 10px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            outline: none;
+            border-radius: 0 5px 5px 0;
+            border-radius: 100px;
+            outline: none;
+            border: none;
+            background-color: #F0EDFF;
+            font-size: 16px;
+        }
+
+        .terms {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .terms input {
+            margin-right: 10px;
+        }
+
+        .terms a {
+            color: #6c63ff;
+            text-decoration: none;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        .signin-btn, .google-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .signin-btn {
+            background-color: #6c63ff;
+            color: white;
+            font-size: 16px;
+        }
+
+        .google-btn {
+            background-color: white;
+            color: #6c63ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .google-btn img {
+            margin-right: 10px;
+        }
+
+        .or {
+            text-align: center;
+            margin: 10px 0;
+            color: #aaa;
+        }
+
+        h2{
+            text-align: center;
+        }
+
+        .signin-btn{
+            width: 100px;
+            height: 40px;
+            background-color: #6c63ff;
+            color: white;
+            border-radius: 10px;
+            margin-left: 150px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(52, 53, 66, 0.4); /* Adds shadow to the button */
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .google-btn{
+            border: 1px solid gray;
+            border-radius: 10px;
+            color: black;
+        }
+
+        .google-btn b {
+            margin-left: 5px; 
+        }
+
+        .right-section img{
+            height: 720px;
+            width: 1010px;
+        }
+
+        a{
+            text-decoration: none;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <form action="/login" method="POST">
+                <h2>LOGIN</h2>
+                <% if (error) { %>
+                    <p style="color: rgb(242, 8, 8);align-items: centerde;"><%= error %></p>
+                  <% } %>
+                <div class="input-group">
+                    <label for="username">
+                        <span class="icon">&#128100;</span>
+                        <input type="text" name="email" placeholder="Email id" required>
+                    </label>
+                </div>
+                <div class="input-group">
+                    <label for="password">
+                        <span class="icon">&#128274;</span>
+                        <input type="password" name="password" placeholder="Password" required>
+                    </label>
+                </div><br>
+                <button type="submit" class="signin-btn">Login Now</button>
+                <div class="or">Or</div>
+                <br>
+                <p>Do not have any Account?<a href="/signup"> Register</a></p>
+            </form>
+        </div>
+        <div class="right-section">
+                <img src="image/girl2.png" alt="Person with tablet">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

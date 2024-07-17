@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Bug Reporting Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-tI2ah1WfCBvtp9lYXEh8R0cbpXw2IapU0G9PvJrBE8F6EM0GJRDx8/48M8T49hSfC2QyTzUMqo47RR+QaVU7vg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://i.pinimg.com/564x/ad/fe/c6/adfec60620426c53f8b05e0e6ba4bebe.jpg");
+            background-size: cover;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            z-index: 1000; /* Ensure the navbar is on top */
+        }    
+        .navbar a {
+            color: black;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+        .navbar a:hover {
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+        .navbar .left {
+            display: flex;
+            align-items: center;
+        }
+        .navbar .left a {
+            margin-right: 10px;
+        }
+        .navbar .right {
+            display: flex;
+            align-items: center;
+            margin-right: 100px;
+        }
+        .navbar .icon {
+            margin-right: 8px;
+        }
+        .notification {
+            position: relative;
+            margin-right: 20px;
+            cursor: pointer; 
+        }
+       
+        .profile img {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+        }
+        .categories {
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            background-color: #0056b3; /* Color for the category bar */
+            padding: 10px 0;
+            position: fixed; /* Make it fixed */
+            top: 40px; /* Below the main navbar */
+            width: 100%; /* Full width */
+            z-index: 999; /* Above other content but below the navbar */
+            text-align: center;
+        }
+        .categories .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .categories .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        .categories .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .categories .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .categories .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .categories a {
+            padding-bottom: 50px;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        .container {
+            padding: 20px;
+            margin-top: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .home-content {
+            margin-top: 40px;
+             /* Center align the text */
+        }
+        .home-title {
+            margin-left: 20px;
+            font-size: 3em;
+            color: #fff;
+            display: inline-block; /* Ensure inline display */
+        }
+        .search-container {
+            text-align: center;
+            margin-top: 20px; /* Adjust top margin as needed */
+            position: relative;
+            display: inline-block; /* Ensure inline display */
+        }
+        .search-bar {
+            width: 200px; /* Adjust width for the icon */
+            max-width: 900px;
+            padding: 10px 40px 10px 20px; /* Added padding for the icon */
+            font-size: 18px;
+            border: none;
+            border-radius: 20px;
+            margin-left: 200px;
+            background-color: rgba(255, 255, 255, 0.8); /* Adjust transparency as needed */
+            color: #131111;
+        }
+        .search-bar:focus {
+            outline: none; /* Remove outline on focus if needed */
+        }
+        button{
+            margin-top: 20px; /* Add some margin above the button */
+            width: 100px;
+            height: 50px;
+            font-size: 16px;
+            border: none;
+            border-radius: 20px;
+            background-color: #0056b3; /* Button background color */
+            color: #fff; /* Button text color */
+            cursor: pointer;
+        }
+        
+        /* Styling for select box */
+    .event {
+    width: 32%;
+    margin-right: 1%;
+    float: left;
+    background-color: #fff;
+    padding: 10px;
+  }
+  .event .heading {
+    background: #702eaa;
+    padding: 5px;
+    color: #fff;
+    background: #702eaa;
+    text-align: center;
+  }
+  .event ul li {
+    margin-bottom: 20px;
+    width: 100%;
+    float: left;
+    list-style: none;
+  }
+  .event-date {
+    background: #702eaa;
+    float: left;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    padding: 8px 12px;
+    margin-right: 10px;
+  }
+  .cycle-container {
+    display: flex;
+    
+    justify-content: space-around;
+    margin-top: 10px;
+    padding-top: px;
+  }
+  .cycle-card {
+    text-align: center;
+   padding-top: 10px;
+    padding: 60px;
+    border-radius: 0.5rem;
+  }
+  .cycle-card img {
+    max-width: 100%;
+    height: 100px;
+    border-radius: 0.5rem;
+    margin-bottom: 10px;
+    padding-left: 30px;
+  }
+  select {
+            padding: 15px 20px; /* Adjust padding for height */
+            font-size: 18px; /* Adjust font size */
+            border: none;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Adjust transparency as needed */
+            color: #131111;
+            margin-top: 20px;
+            width: 300px; /* Adjust width as needed */
+            max-width: 100%;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            text-align: center;
+            outline: none; /* Remove outline on focus */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-left: 50px;
+        }
+        select:focus {
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Adjust focus style */
+        }
+        select option {
+            background-color: #fff;
+            color: #131111;
+            padding: 10px;
+            font-size: 16px;
+        }
+        select option:first-child {
+            color: #999; /* Placeholder text color */
+        }
+        .cat{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+    </style>
+</head>
+ <body>
+  
+      <div class="navbar">
+        
+        <!-- Navbar content -->
+        <div class="left">
+          <a class="navbar-brand" href="#">
+            <img src="image/BugPatrol.png"   alt="Bootstrap" width="110" height="37">
+          </a>
+            <a href="/home">
+                <span class="icon">&#127968;</span>Home
+            </a>
+            <a href="/report">
+                <span class="icon">&#128736;</span>Report a Bug
+            </a>
+            <a href="/community">
+                <span class="icon">&#128101;</span>Community Forum
+            </a>
+            <% 
+            var moni = typeof moni !== 'undefined' ? moni : false; 
+          %>
+          <% if(moni){ %>
+            <a href="/dash">
+              <span class="icon">&#128200;</span>Monitoring Dashboard
+            </a>
+          <% } %>
+          
+            <a href="/about">
+                <span class="icon">&#128100;</span>About Us
+            </a>
+        </div>
+        <% 
+
+        var logged = typeof logged !== 'undefined' ? logged : false; 
+      %>
+        
+        <% if(logged){%>
+      
+            <form class="d-flex" role="search">
+            
+              <div class="text-bold" style="padding-left: 10px;padding-right: 10px;">
+             <p style=" white-space: pre-wrap;">Welcome  <%=name%></p>
+            </div>
+            <div class="profile">
+                <a href="/profile">
+                    <img src="image/girl2.png" alt="Profile">
+                </a>
+            </div>            
+        </div>
+            </form>
+        
+            <%}else {%> 
+
+        <div class="right">
+            <a href="/login">
+                <span class="icon">&#128100;</span>User login
+            </a>
+            <a href="/alogin">
+                <span class="icon">&#128274;</span>authority Login
+            </a>
+        </div>
+            
+        <%}
+
+      %>
+    </div> 
+    <div class="text-center">
+    <div class="text-centre text-light text-bold  " style="align-items: end;margin-top: 35px;padding-top: 70px;"><h1 class="g-5">Online Bug Report Platform</h1></div>
+  </div>
+    <div class="container pt-1 mt-5">
+      
+        <div class="home-content">
+            
+        </div>
+        <form action="/show" method="POST">
+            <div class="cat">
+                <select id="" name="department" onchange="categorySelected(this)">
+                    <option value="">Select Category</option>
+                    <option value="all">All</option>
+                    <option value="Ministry of Education" name="Ministry of Education">Ministry ofEducation</option>
+                    <option value="Ministry of Health" name="Ministry of Health">Ministry of Health</option>
+                    <option value="Ministry of Defence" name="Ministry of Defence">Ministry of Defence</option>
+                   <option value="Ministry of Agriculture" name="Ministry of Agriculture">Ministry of agricultre</option>
+                    <option value="Ministry of Railways" name="Ministry of Railways">Ministry of Railway</option>
+                </select>
+                <button style="margin-left: 50px;" type="submit">Go</button>
+            </div>
+          </form>
+            
+    </div>
+    <% 
+
+    var show = typeof show !== 'undefined' ? show : false; 
+  %>
+    
+
+    <% if(show) {%>
+
+      <div class="container">
+        <div class="class-bd1 pt-2 pb-2">
+          
+               <div class="row h-75 g-5 pt-1 mt-1">
+                <% bug.forEach(function(bug){%>
+                  <div class="col  col-xl-3 col-md-4  col-sm-6">
+
+                    <div class="card h-100"  aria-hidden="true">
+                      <a href="/bugs/<%=bug.title%>" style="text-decoration: none; color: black; " >
+                      <% const base64Image=bug.img.toString('base64'); %>
+                      <% const dataUrl='data:image/jpeg;base64,'+base64Image; %>
+                      <img src="<%= dataUrl %>" class="card-img-top h-10" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title"><%=bug.title %></h5>
+                        <uo>
+                          <li><%=bug.ministry%></li>
+                         
+                          <li><%=bug.status%></li>
+                         
+                        </uo>
+                        
+                      </div>
+                    </div>
+                  </a>
+                  </div>
+                  <%})
+                  %>
+
+
+                    </div>
+                    </div>
+                    </div>
+          
+                    <%}
+                   %>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="main" style="padding-top: 5px; padding-bottom: 10px;margin-bottom: 10px;">
+    <!------ Campus, Events and Notice Board html Starts ------->
+<div class="main-section" >
+    <div class="container">
+      <!--------------------------------CAMPUS NEWS SECTION ---------------------------->
+      <div class="event">
+        <h2 class="heading">Latest News</h2>
+        <div>
+          <marquee direction="up"style="height:390px;">
+            <ul>
+              <li>
+                <i>15-July-2024 :</i> Government announces new digital infrastructure policy.
+                <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/000000/new.png" alt="new"/>
+              </li>
+              <li>
+                <i>14-July-2024 :</i> Major cybersecurity attack averted by national defense system.
+                <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/000000/new.png" alt="new"/>
+              </li>
+              <li>
+                <i>13-July-2024 :</i> New educational reforms to be implemented from next academic year.
+                <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/000000/new.png" alt="new"/>
+              </li>
+              <li>
+                <i>12-July-2024 :</i>  Healthcare sector to receive a significant boost with new funding. <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/000000/new.png" alt="new"/>
+              <li>
+                <i>11-July-2024 :</i>Government launches new AI initiative to boost innovation.
+                <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/000000/new.png" alt="new"/>
+              </li>
+              <li>
+                <i>10-July-2024 :</i>  Major reforms announced in the transportation sector.
+                <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/000000/new.png" alt="new"/>
+              </li>
+              <li>
+                <i>09-July-2024 :</i>  New digital payment regulations to be implemented from August.
+                <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/000000/new.png" alt="new"/>
+              </li>
+              <li>
+                <i>08-July-2024 :</i>National healthcare scheme expanded to include more beneficiaries.
+                <img src="images/new.gif">
+              </li>
+              <li>
+                <i>06-July-2024 :</i>  Education ministry announces new scholarship programs.
+                <img src="images/new.gif">
+              </li>
+            </ul>
+          </marquee>
+        </div>
+      </div>
+      <!----------------------------EVENT SECTION ----------------------->
+      <div class="event">
+        <h2 class="heading">Events</h2>
+        <div>
+          <ul>
+            <li>
+              <span class="event-date">29 <br> April </span><div class="text bold"><h6> National Conference on Digital Transformation.
+              </h6></div>
+            </li>
+            <li>
+              <span class="event-date">15 <br> july </span> Webinar on Cybersecurity Best Practices.
+
+            <li>
+              <span class="event-date">16 <br> july </span>South Dakota Regional Public Sector Cybersecurity Summit 2024:
+             
+            </li>
+            <li>
+              <span class="event-date">17<br> july </span> Local Government Open Day.
+
+            </li>
+            <li>
+              <span class="event-date">18<br> july </span> Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!--------------------------------NOTICE BOARD SECTION ------------------------->
+      <div class="event">
+        <h2 class="heading">Notice Boards</h2>
+        <div>
+          <ul>
+            <li><img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/000000/new.png" alt="new"/>
+         PM KISAN registration is under process
+            </li>
+            <li><img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/000000/new.png" alt="new"/>
+         RBI has penalized five banks, including PNB, for non-compliance with regulations​
+            </li>
+            <li><img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/000000/new.png" alt="new"/>
+         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            </li>
+            <li ><img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/000000/new.png" alt="new"/>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            </li>
+            <li><img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/000000/new.png" alt="new"/>
+               Assam Flood Relief Efforts - Over 24 lakh people affected by floods; government intensifies relief operations
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+</div><br><br>
+<div class="text-light bold pt-4" style="padding-left:5%; padding-bottom:1px ;"><h1>What You Can DO?</h1></div>
+    <div class="container" >
+        
+        <div class="row  cycle-container"style="padding-top: 5px;">
+          <div class="col-md-3">
+            <div class="cycle-card">
+              <img src="image/h4.png" alt="Image 1">
+              <p class="text-light">Report Bug</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="cycle-card">
+              <img src="image/h1.png" alt="Image 2">
+              <p class="text-light">Find Bug</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="cycle-card">
+              <img src="image/h3.png" alt="Image 3">
+              <p class="text-light">Coummnity</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="cycle-card">
+              <img src="image/h2.png" alt="Image 4">
+              <p class="text-light">Soultion</p>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+
+
+
+
+</body>
+</html>

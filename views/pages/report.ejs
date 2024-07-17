@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Reporting Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-tI2ah1WfCBvtp9lYXEh8R0cbpXw2IapU0G9PvJrBE8F6EM0GJRDx8/48M8T49hSfC2QyTzUMqo47RR+QaVU7vg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://i.pinimg.com/564x/ad/fe/c6/adfec60620426c53f8b05e0e6ba4bebe.jpg");
+            background-size: cover;
+            background-attachment: fixed; /* Ensures the background image is fixed */
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .navbar a {
+            color: black;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a:hover {
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+
+        .navbar .left {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .left a {
+            margin-right: 10px;
+        }
+
+        .navbar .right {
+            margin-right: 20px; /* Adjust margin for space between notification and profile */
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Align items to the right */
+            position: relative; /* Ensure relative positioning for dropdown */
+        }
+
+        .navbar .icon {
+            margin-right: 8px;
+        }
+
+        .profile img {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            margin-right: 40px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            margin-top: 80px; /* Adjust to prevent content from being hidden under navbar */
+        }
+
+        .report-bug-form,
+        .educational-resources {
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .report-bug-form {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            color: whitesmoke;
+            border: 2px solid white;
+            width: 600px;
+            margin-right: 100px;
+        }
+
+        .report-bug-form h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .report-bug-form label {
+            font-weight: bold;
+        }
+
+        .report-bug-form input[type="text"],
+        .report-bug-form input[type="file"],
+        .report-bug-form input[type="link"],
+        .report-bug-form select,
+        .report-bug-form textarea {
+            width: calc(100% - 22px); /* Adjust width here */
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #F0EDFF; /* Background color for input fields */
+        }
+
+        .report-bug-form textarea {
+            resize: vertical;
+            height: 150px;
+        }
+
+        .report-bug-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .signin-btn {
+            width: 140px;
+            height: 55px;
+            background-color: #6c63ff;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(52, 53, 66, 0.4); 
+            transition: box-shadow 0.3s ease-in-out;
+            font-weight: 800;
+            margin-left: 250px;
+        }
+
+        .signin-btn:hover {
+            box-shadow: 0 8px 16px rgba(52, 53, 66, 0.6);
+        }
+
+        input {
+            outline: none;
+            background-color: #F0EDFF;
+        }
+
+        .educational-resources {
+            margin-top: 100px;
+            height: 800px;
+            background-color: white;
+            color: #333;
+            width: 85%;
+        }
+
+        .educational-resources h2 {
+            color: #4CAF50;
+        }
+
+        .educational-resources ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .educational-resources li {
+            background-color: white;
+            margin: 0.5em 0;
+            padding: 1em;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .educational-resources li a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .educational-resources li a:hover {
+            text-decoration: underline;
+        }
+
+        .educational-resources li p {
+            margin: 0.5em 0 0;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        
+        <div class="left">
+            <a class="navbar-brand" href="#">
+                <img src="image/BugPatrol.png"   alt="Bootstrap" width="110" height="37">
+              </a>
+            <a href="/home">
+                <span class="icon">&#127968;</span>Home
+            </a>
+            <a href="/report">
+                <span class="icon">&#128736;</span>Report a Bug
+            </a>
+            <a href="/community">
+                <span class="icon">&#128101;</span>Community Forum
+            </a>
+            <% 
+            var moni = typeof moni !== 'undefined' ? moni : false; 
+          %>
+          <% if(moni){ %>
+            <a href="/dash">
+              <span class="icon">&#128200;</span>Monitoring Dashboard
+            </a>
+          <% } %>
+            <a href="/about">
+                <span class="icon">&#128100;</span>About Us
+            </a>
+        </div>
+        <% 
+
+        var logged = typeof logged !== 'undefined' ? logged : false; 
+      %>
+        
+        <% if(logged){%>
+      
+            <form class="d-flex" role="search">
+            
+              <div class="text-bold" style="padding-left: 10px;padding-right: 10px;">
+             <p style=" white-space: pre-wrap;">Welcome  <%=name%></p>
+            </div>
+            <div class="profile">
+                <a href="/profile">
+                    <img src="image/girl2.png" alt="Profile">
+                </a>
+            </div>            
+        </div>
+            </form>
+        
+            <%}else {%> 
+
+        <div class="right">
+            <a href="/login">
+                <span class="icon">&#128100;</span>User login
+            </a>
+            <a href="/alogin">
+                <span class="icon">&#128274;</span>authority Login
+            </a>
+        </div>
+            
+        <%}
+
+      %>
+    
+    
+    </div>
+
+    <% 
+
+    var successMessage = typeof successMessage !== 'undefined' ? successMessage : false; 
+  %>
+    
+
+
+    <% if (successMessage) { %>
+        <script>
+          // Display alert with success message
+          alert("<%= successMessage %>");
+        </script>
+      <% } %>
+
+
+<div class="row" style="object-fit: fill ;display: inline;display: flex;">
+    <div class="col col-xl-6">
+    <div class="container">
+        <!-- Bug Reporting Form Section -->
+        <div class="report-bug-form">
+            <h1>Report a Bug</h1>
+            <form action="/report" method="POST" enctype="multipart/form-data">
+                <label for="bug-title">Bug Title:</label><br><br>
+                <input type="text"  name="title" required><br><br>
+
+                <label for="bug-category">Bug Category:</label><br><br>
+                <select id="bug-category" name="category" required style="outline:none;" >
+                    <option value="">Select Category</option>
+                    <option value="security">Security</option>
+                    <option value="usability">Usability</option>
+                    <option value="performance">Performance</option>
+                    <!-- Add more categories as needed -->
+                </select><br><br>
+
+                <label for="bug-category">Ministry:</label><br><br>
+                <select id="department" name="department" required style="outline:none;" >
+                    <option value="Ministry of Education">Ministry ofEducation</option>
+                    <option value="Ministry of Health">Ministry of Health</option>
+                            <option value="Ministry of Defence">Ministry of Defence</option>
+                            <option value="Ministry of agricultre">Ministry of agricultre</option>
+                    <option value="Ministry of Railway">Ministry of Railway</option>
+                    <!-- Add more categories as needed -->
+                </select><br><br>
+
+                <label for="bug-description">Bug Description:</label><br><br>
+                <textarea  style="outline:none;" name="description" rows="4" required></textarea><br><br>
+
+                <label for="bug-other-docs">Name the Website:</label><br><br>
+                <input type="text"  name="webname"><br><br>
+
+                <label for="bug-other-docs">Website Link:</label><br><br>
+                <input type="link"  name="weblink"><br><br>
+
+                <label for="bug-screenshot">Attach media:</label><br><br>
+                <input type="file" id="bug-screenshot" name="img1" accept="image/*"><br><br>
+                <input type="file" id="bug-screenshot" name="img2" accept="image/*"><br><br>
+
+                <button type="submit" class="signin-btn">Submit</button>
+            </form>
+           
+        </div>
+        
+
+
+    </div>
+ </div>
+
+    <div class="col col-xl-6">
+    <div class="educational-resources">
+        <h2>Educational Resources and Best Practices</h2>
+        <ul>
+            <li>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/Security" target="_blank">MDN Web Docs - HTML Security Best Practices</a>
+                <p>Comprehensive guide to securing your HTML code against common vulnerabilities.</p>
+            </li>
+            <li>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Best_practices" target="_blank">MDN Web Docs - CSS Security Best Practices</a>
+                <p>Best practices for writing secure and bug-free CSS code.</p>
+            </li>
+            <li>
+                <a href="https://owasp.org/www-project-top-ten/" target="_blank">OWASP - Top 10 Web Application Security Risks</a>
+                <p>The most critical security risks to web applications identified by OWASP.</p>
+            </li>
+            <li>
+                <a href="https://web.dev/secure/" target="_blank">web.dev - Secure Your Site</a>
+                <p>Guidance from Google on securing your website.</p>
+            </li>
+            <li>
+                <a href="https://developers.google.com/web/fundamentals/security/" target="_blank">Google Web Fundamentals - Security</a>
+                <p>Google's best practices for web security.</p>
+            </li>
+            <li>
+                <a href="https://www.bugcrowd.com/resources/bug-bounty-101/" target="_blank">Bugcrowd - Bug Bounty 101</a>
+                <p>Introduction to bug bounty programs and how to report security vulnerabilities.</p>
+            </li>
+            <li>
+                <a href="https://hackerone.com/for-hackers" target="_blank">HackerOne - For Hackers</a>
+                <p>Resources and community for ethical hacking and bug reporting.</p>
+            </li>
+        </ul>
+        <h2>Badges</h2>
+        <img src=""
+    </div>
+</div>
+</div>
+</div>
+
+      
+
+
+    <script>
+        function openBugFile(fileName) {
+            window.location.href = fileName;
+        }
+    </script>
+</body>
+</html>

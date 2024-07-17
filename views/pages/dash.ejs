@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-tI2ah1WfCBvtp9lYXEh8R0cbpXw2IapU0G9PvJrBE8F6EM0GJRDx8/48M8T49hSfC2QyTzUMqo47RR+QaVU7vg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://i.pinimg.com/564x/ad/fe/c6/adfec60620426c53f8b05e0e6ba4bebe.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+            color: whitesmoke;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .navbar a {
+            color: black;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a:hover {
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+
+        .navbar .left {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .left a {
+            margin-right: 10px;
+        }
+
+        .navbar .right {
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        .navbar .icon {
+            margin-right: 8px;
+        }
+
+        .profile img {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            margin-right: 40px;
+        }
+
+        .container {
+            padding: 20px;
+            margin-top: 80px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .dashboard-section {
+            margin-left: 10px;
+            margin-right: 30px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 1000px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .dashboard-section h2 {
+            margin-top: 0;
+            color: whitesmoke;
+        }
+
+        .chart {
+            width: 100%;
+            height: 300px;
+        }
+
+        .bug-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .bug-list li {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 1em;
+            margin: 0.5em 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .alert {
+            color: red;
+        }
+
+        .resolved {
+            color: green;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="left">
+            <a class="navbar-brand" href="#">
+                <img src="image/BugPatrol.png"   alt="Bootstrap" width="110" height="37">
+              </a>
+            <a href="/home">
+                <span class="icon">&#127968;</span>Home
+            </a>
+            <a href="/report">
+                <span class="icon">&#128736;</span>Report a Bug
+            </a>
+            <a href="/community">
+                <span class="icon">&#128101;</span>Community Forum
+            </a>
+            <a href="dashboard.htm">
+                <span class="icon">&#128200;</span>Monitoring Dashboard
+            </a>
+            <a href="/about">
+                <span class="icon">&#128100;</span>About Us
+            </a>
+        </div>
+        <div class="profile">
+            <a href="/profile">
+                <img src="girl2.png" alt="Profile">
+            </a>
+        </div> 
+    </div>
+
+    <div class="container">
+        <div class="dashboard-section">
+            <h2>Bug Status Overview</h2>
+            <canvas id="bugStatusChart" class="chart"></canvas>
+        </div>
+        <div class="dashboard-section">
+            <h2>Critical Issues</h2>
+            <ul id="criticalIssues" class="bug-list">
+                <li class="alert">
+                    <strong>Train Schedule Inaccuracy</strong>
+                    <p>The train schedule displayed on the official railway website is inaccurate. Passengers are frequently experiencing delays and cancellations not reflected in the schedule</p>
+                    <p>Status: Open</p>
+                </li>
+                <li class="resolved">
+                    <strong>COVID-19 Vaccine Registration Page Error</strong>
+                    <p>Users attempting to register for COVID-19 vaccination encounter a "Page Not Found" error when accessing the registration form on the Ministry of Health website. This prevents eligible citizens from scheduling their vaccinations.</p>
+                    <p>Status: Resolved</p>
+                </li>
+                <li class="alert">
+                    <strong> Incorrect Information on Healthcare Facility</strong>
+                    <p>The contact information for several healthcare facilities listed in the Ministry of Health's directory is outdated or incorrect. This causes confusion for users trying to locate nearby medical services.</p>
+                    <p>Status: Open</p>
+                </li>
+            </ul>
+        </div>
+        <div class="dashboard-section">
+            <h2>Historical Data and Trends</h2>
+            <canvas id="historicalDataChart" class="chart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Sample data to demonstrate functionality
+        const bugStatusData = {
+            labels: ['Open', 'In Progress', 'Resolved'],
+            datasets: [{
+                label: 'Bug Status',
+                data: [12, 7, 15],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const historicalData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [{
+                label: 'Bugs Reported',
+                data: [10, 12, 8, 15, 9, 12],
+                fill: false,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                tension: 0.1
+            }]
+        };
+
+        // Populate bug status chart
+        const bugStatusCtx = document.getElementById('bugStatusChart').getContext('2d');
+        new Chart(bugStatusCtx, {
+            type: 'pie',
+            data: bugStatusData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+
+        // Populate historical data chart
+        const historicalDataCtx = document.getElementById('historicalDataChart').getContext('2d');
+        new Chart(historicalDataCtx, {
+            type: 'line',
+            data: historicalData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

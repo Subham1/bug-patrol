@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .left-section, .right-section {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .right-section {
+            background-color: #6c63ff;
+            color: white;
+        }
+
+        form {
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form h2 {
+            margin-bottom: 20px;
+            text-align: center; /* Center align the heading */
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            background-color: #F0EDFF;
+        }
+
+        .input-group label {
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group .icon {
+            padding: 10px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            outline: none;
+            border-radius: 5px; /* Adjusted border radius */
+            background-color: #F0EDFF;
+            font-size: 16px;
+        }
+
+        .terms {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .terms input {
+            margin-right: 10px;
+        }
+
+        .terms a {
+            color: #6c63ff;
+            text-decoration: none;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        .signin-btn, .google-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .signin-btn {
+            background-color: #6c63ff;
+            color: white;
+        }
+
+        .google-btn {
+            background-color: white;
+            color: #6c63ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid gray;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .google-btn img {
+            margin-right: 10px;
+        }
+
+        .or {
+            text-align: center;
+            margin: 10px 0;
+            color: #aaa;
+        }
+
+        .right-section img {
+            height: 100%; /* Adjusted image height */
+            width: 100%; /* Adjusted image width */
+            object-fit: cover; /* Maintain aspect ratio */
+        }
+
+        a {
+            text-decoration: none;
+            color: #6c63ff; /* Link color */
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .signin-btn{
+            width: 100px;
+            height: 40px;
+            background-color: #6c63ff;
+            color: white;
+            border-radius: 10px;
+            margin-left: 150px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(52, 53, 66, 0.4); 
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .google-btn b {
+            margin-left: 5px; 
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <form action="/signup" method="POST">
+                <h2>SIGN IN</h2>
+                <div class="input-group">
+                    <label for="username">
+                        <span class="icon">&#128100;</span>
+                        <input type="text" name="username" placeholder="Username" required>
+                    </label>
+                </div>
+                <div class="input-group">
+                    <label for="email">
+                        <span class="icon">&#9993;</span>
+                        <input type="email" name="email" placeholder="Email id" required>
+                    </label>
+                </div>
+                <div class="input-group">
+                    <label for="password">
+                        <span class="fa fa-mobile-phone"></span>
+                        <input type="number" name="mobile" placeholder="Mobile number" required>
+                    </label>
+                </div>
+                <div class="input-group">
+                    <label for="password">
+                        <span class="icon">&#128274;</span>
+                        <input type="password" name="password" placeholder="Password" required>
+                    </label>
+                </div>
+                <div class="input-group">
+                    <label for="confirm-password">
+                        <span class="icon">&#128274;</span>
+                        <input type="password" name="password2" placeholder="Confirm password" required>
+                    </label>
+                </div>
+                <div class="terms">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">By registering, I have agreed to all <a href="terms.htm">Terms & conditions</a></label>
+                </div>
+                <button type="submit" class="signin-btn">Sign In</button>
+                <div class="or">Or</div>
+                
+                <p>Already have an Account? <a href="/login">Login</a></p>
+            </form>
+        </div>
+        <div class="right-section">
+            <img src="image/girl2.png" alt="Person with tablet">
+        </div>
+    </div>
+</body>
+</html>
