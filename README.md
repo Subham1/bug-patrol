@@ -45,10 +45,9 @@ Develop a system to allow citizens to report bugs on government websites, create
 
 3. Set up the database:
     create tables:
-   ### Bugs Table
-    --sql
-    -- Table: bugs
-    -- Description: Stores information about reported bugs
+   ## Bugs Table
+   table:bugs
+      -Description: Stores information about reported bugs
 ```
     CREATE TABLE `bugs` (
   `email` text NOT NULL,
@@ -66,10 +65,10 @@ Develop a system to allow citizens to report bugs on government websites, create
 
 ```
 ``
-    ### Users Table
-    --sql
-    -- Table: users
-    -- Description: Stores information about registered users
+    ## Users Table
+    -sql
+    -Table: users
+    -Description: Stores information about registered users
 ```
 ``
    CREATE TABLE `user` (
@@ -84,9 +83,9 @@ Develop a system to allow citizens to report bugs on government websites, create
 ```
 `
     ### Comments Table
-    --sql
-    -- Table: comments
-    -- Description: Stores comments on bug reports
+    -sql
+    -Table: comments
+    -Description: Stores comments on bug reports
 ```
     CREATE TABLE `comm2` (
   `title` text NOT NULL,
@@ -96,10 +95,10 @@ Develop a system to allow citizens to report bugs on government websites, create
     ```
 ```
 ``
-    ### Authority table
-    ---sql
-    -- Table: departments
-    -- Description: Stores information about government departments
+    ## Authority table
+    -sql
+    -Table: departments
+    -Description: Stores information about government departments
 ```
    CREATE TABLE `authority` (
   `id` int(11) NOT NULL,
@@ -114,8 +113,9 @@ Develop a system to allow citizens to report bugs on government websites, create
 ```
 ``
     - Update the database configuration in the project. Edit the `app.js` (or equivalent configuration file) and set your database host, name, user, and password:
-    ```javascript
+    javascript
     // app.js
+    ```
     var con = mysql.createConnection({
     host: "your server",
     user: "your-username",
@@ -134,10 +134,10 @@ Develop a system to allow citizens to report bugs on government websites, create
 - Authorities can log in to access the monitoring dashboard.
   
 ## Authors
-This project is jointly developed by
-[Subham](https://github.com/Subham1) 
-[Bhagya](https://github.com/BHAGYAMUNI).
-[Sahiti](https://github.com/friend-username).
-Both contributors have equal ownership and contributions to the project.
+-This project is jointly developed by
+-[Subham](https://github.com/Subham1) 
+-[Bhagya](https://github.com/BHAGYAMUNI).
+-[Sahiti](https://github.com/friend-username).
+-Both contributors have equal ownership and contributions to the project.
 
 
