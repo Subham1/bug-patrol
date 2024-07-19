@@ -148,7 +148,7 @@ We developed this project together:
 |-------------|---------|
 |**Subham** |https://github.com/Subham1 |
 | **Bhagya** | https://github.com/BHAGYAMUNI |
-|  **Sahiti** | () |
+|  **Sahiti** | (https://github.com/sahithi1103) |
 
 Feel free to check out our profiles and follow our work!
 
