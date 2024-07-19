@@ -6,6 +6,8 @@ A comprehensive system that enables citizens to report bugs on government websit
 ## Problem Statement
 Develop a system to allow citizens to report bugs on government websites, create a community forum for discussion, provide login functionality for users and authorities, and offer a monitoring dashboard for authorities to oversee the status and resolution of reported bugs.
 
+![Home Page](home.png)
+
 ## Features
 - **Bug Reporting**: Users can report bugs they encounter on government websites.
 - **View Bugs by Department**: Users can view reported bugs from different government departments.
